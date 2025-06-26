@@ -1,11 +1,11 @@
-package com.example.movieapp.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Objects;
-import javax.persistence.*;
+package com.moviesapp.backend.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,16 +19,13 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
 
-    @OneToMany(
-            mappedBy = "user",
-            cascade = CascadeType.ALL,
-    )
+    @OneToMany(mappedBy = "user")
     private List<Favorite> favorites = new ArrayList<>();
 
     public User() { }
@@ -44,7 +41,7 @@ public class User {
         return id;
     }
 
-    public String getUsername() {
+    public String getUserName() {
         return username;
     }
 

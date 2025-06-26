@@ -1,13 +1,6 @@
-package com.example.movieapp.model;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import java.util.Objects;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.*;
+package com.moviesapp.backend.models;
+
+import jakarta.persistence.*;
 
 
 @Entity
@@ -22,7 +15,7 @@ public class Favorite {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @Column(nullable = false)
+    @Column(name = "movieId", nullable = false)
     private String movieId;
 
     public Favorite() { }

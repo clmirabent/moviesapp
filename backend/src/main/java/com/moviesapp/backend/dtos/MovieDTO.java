@@ -1,11 +1,10 @@
-package com.example.movieapp.model;
-import java.util.Objects;
+package com.moviesapp.backend.dtos;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Objects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Movie {
+public class MovieDTO {
     @JsonProperty("imdbID")
     private String imdbId;
     @JsonProperty("Title")
@@ -14,9 +13,9 @@ public class Movie {
     private String year;
     @JsonProperty("Poster")
     private String posterUrl;
-    public Movie() {
+    public MovieDTO() {
     }
-    public Movie (String imdbId, String title, String year, String posterUrl) {
+    public MovieDTO(String imdbId, String title, String year, String posterUrl) {
         this.imdbId = imdbId;
         this.title = title;
         this.year = year;
