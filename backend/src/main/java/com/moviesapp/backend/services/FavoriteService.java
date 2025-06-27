@@ -1,6 +1,7 @@
 package com.moviesapp.backend.services;
 
 import com.moviesapp.backend.dtos.FavoriteDTO;
+import com.moviesapp.backend.dtos.MovieDTO;
 import com.moviesapp.backend.models.Favorite;
 import com.moviesapp.backend.models.User;
 import com.moviesapp.backend.repositories.FavoriteRepository;
@@ -64,6 +65,7 @@ public class FavoriteService {
         if (!userRepo.existsById(userId)) {
             return null;
         }
+        // TODO: To improve performance add a cache
         return favoriteRepo.findByUserId(userId).stream()
                 .map(this::toDto)
                 .map(this::addOmdbFavorite)
@@ -76,7 +78,13 @@ public class FavoriteService {
 
     private FavoriteDTO addOmdbFavorite(FavoriteDTO favorite) {
         var omdbMovie = omdbMovieService.getOmdbMovie(null, favorite.getMovieId());
-        return new FavoriteDTO(favorite.getMovieId(), omdbMovie);
+        return new FavoriteDTO(favorite.getMovieId(),
+                new MovieDTO(
+                        omdbMovie.getImdbId(),
+                        omdbMovie.getTitle(),
+                        omdbMovie.getYear(),
+                        omdbMovie.getPosterUrl(),
+                        true));
     }
     private FavoriteDTO toDto(Favorite fav) {
         return new FavoriteDTO(

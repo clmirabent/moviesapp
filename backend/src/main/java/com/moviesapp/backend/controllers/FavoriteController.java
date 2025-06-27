@@ -73,7 +73,7 @@ public class FavoriteController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<FavoriteDTO>> getFavoritesByUser() {
         try {
             String email = SecurityContextHolder.getContext().getAuthentication().getName();

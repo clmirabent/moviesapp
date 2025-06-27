@@ -1,6 +1,5 @@
 package com.moviesapp.backend.dtos;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,7 +7,7 @@ public class FavoriteDTO {
     @NotNull
     private String movieId;
     @Nullable
-    private OmdbMovieDTO omdbMovieDTO;
+    private MovieDTO movieDTO;
 
     public FavoriteDTO() {}
 
@@ -16,20 +15,20 @@ public class FavoriteDTO {
         this.movieId  = movieId;
     }
 
-    public FavoriteDTO(String movieId, OmdbMovieDTO omdbMovieDTO) {
+    public FavoriteDTO(String movieId, MovieDTO movieDTO) {
         this.movieId  = movieId;
-        this.omdbMovieDTO = omdbMovieDTO;
+        this.movieDTO = movieDTO;
     }
 
     public String getMovieId() {
         return movieId;
     }
 
-    public OmdbMovieDTO getOmdbMovieDTO() {
-        return omdbMovieDTO;
+    public MovieDTO getMovieDTO() {
+        return movieDTO;
     }
 
-    public void setOmdbMovieDTO(OmdbMovieDTO omdbMovieDTO) {
-        this.omdbMovieDTO = omdbMovieDTO;
+    public void setMovieDTO(MovieDTO movieDTO) {
+        this.movieDTO = movieDTO;
     }
 }
