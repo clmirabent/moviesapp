@@ -68,6 +68,16 @@ const LoginForm: React.FC = () => {
             Sign In
           </button>
         </form>
+        <p className={styles.registerPrompt}>
+  If you are new here, please create an account!
+</p>
+
+{/* Botón que lleva al registro */}
+<Link to="/register" className={styles.registerLink}>
+  <button className={styles.submitButton}>
+    Create an account
+  </button>
+</Link>
       </div>
     </div>
   );
