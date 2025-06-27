@@ -82,6 +82,14 @@ public class AuthenticationService {
                 ));
     }
 
+    public User loadByEmail(String email) {
+        return userRepo.findByEmail(email)
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.NOT_FOUND,
+                        "Usuario no encontrado."
+                ));
+    }
+
     private UserDTO toDto(User user) {
         return new UserDTO(
                 user.getId(),

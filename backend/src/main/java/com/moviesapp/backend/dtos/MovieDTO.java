@@ -13,13 +13,16 @@ public class MovieDTO {
     private String year;
     @JsonProperty("poster")
     private String posterUrl;
+    @JsonProperty("isFavorite")
+    private boolean isFavorite;
     public MovieDTO() {
     }
-    public MovieDTO(String imdbId, String title, String year, String posterUrl) {
+    public MovieDTO(String imdbId, String title, String year, String posterUrl, boolean isFavorite) {
         this.imdbId = imdbId;
         this.title = title;
         this.year = year;
         this.posterUrl = posterUrl;
+        this.isFavorite = isFavorite;
     }
 
     // Getters
@@ -42,4 +45,11 @@ public class MovieDTO {
     { this.year = year; }
     public void   setPosterUrl(String posterUrl)
     { this.posterUrl = posterUrl; }
+    public boolean isFavorite() {
+        return isFavorite;
+    }
+
+    public void setIsFavorite(boolean favorite) {
+        isFavorite = favorite;
+    }
 }

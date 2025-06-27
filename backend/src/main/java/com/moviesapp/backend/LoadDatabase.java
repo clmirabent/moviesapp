@@ -16,7 +16,7 @@ public class LoadDatabase {
     CommandLineRunner initDatabase(UserRepository repository) {
 
         return args -> {
-            var user = repository.save(new User("test", "test@test.com", "test"));
+            var user = repository.save(new User("prueba", "prueba@gmail.com", "$2a$10$2qaLOgI69xcwMTsf/ADxT.TRq96zwPK3vyuV9eMu30vE3sfrkWl7G"));
             log.info("Preloading " + user + " with id " + user.getId());
         };
     }

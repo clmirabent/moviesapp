@@ -28,9 +28,9 @@ public class FavoriteService {
     }
 
     //Method to add a favorite to the list
-    public FavoriteDTO addFavorite(String username, String movieId) {
+    public FavoriteDTO addFavorite(String email, String movieId) {
         //Search for user
-        User user = userRepo.findByUsername(username)
+        User user = userRepo.findByEmail(email)
                 .orElseThrow(() ->
                         new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
@@ -65,6 +65,10 @@ public class FavoriteService {
         return favoriteRepo.findByUserId(userId).stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
+    }
+
+    public boolean isFavorite(long userId, String movieId) {
+        return favoriteRepo.findByUserIdAndMovieId(userId, movieId).isPresent();
     }
 
     private FavoriteDTO toDto(Favorite fav) {

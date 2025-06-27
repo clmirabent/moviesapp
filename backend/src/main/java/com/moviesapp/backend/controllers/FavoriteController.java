@@ -1,6 +1,8 @@
 package com.moviesapp.backend.controllers;
 
 import com.moviesapp.backend.dtos.FavoriteDTO;
+import com.moviesapp.backend.models.User;
+import com.moviesapp.backend.services.AuthenticationService;
 import com.moviesapp.backend.services.FavoriteService;
 
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,17 +22,20 @@ public class FavoriteController {
 
     private static final Logger logger = LoggerFactory.getLogger(FavoriteController.class);
     private final FavoriteService favoriteService;
+    private final AuthenticationService authenticationService;
 
     @Autowired
-    public FavoriteController(FavoriteService favoriteService) {
+    public FavoriteController(FavoriteService favoriteService, AuthenticationService authenticationService) {
         this.favoriteService = favoriteService;
+        this.authenticationService = authenticationService;
     }
 
     @PostMapping
     public ResponseEntity<FavoriteDTO> addFavorite(@RequestBody FavoriteDTO favoriteDTO) {
         try {
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
             FavoriteDTO dto = favoriteService.addFavorite(
-                    favoriteDTO.getUsername(),
+                    email,
                     favoriteDTO.getMovieId()
             );
             return ResponseEntity.ok(dto);
@@ -48,12 +54,13 @@ public class FavoriteController {
         }
     }
 
-    @DeleteMapping("/{userId}/{movieId}")
+    @DeleteMapping("/{movieId}")
     public ResponseEntity<Void> deleteFavorite(
-            @PathVariable Long userId,
             @PathVariable String movieId) {
         try {
-            favoriteService.removeFavorite(userId, movieId);
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = authenticationService.loadByEmail(email);
+            favoriteService.removeFavorite(user.getId(), movieId);
             return ResponseEntity.noContent().build();
 
         } catch (ResponseStatusException ex) {
@@ -66,10 +73,12 @@ public class FavoriteController {
         }
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<List<FavoriteDTO>> getFavoritesByUser(@PathVariable Long userId) {
+    @GetMapping("/")
+    public ResponseEntity<List<FavoriteDTO>> getFavoritesByUser() {
         try {
-            List<FavoriteDTO> list = favoriteService.getFavoritesByUser(userId);
+            String email = SecurityContextHolder.getContext().getAuthentication().getName();
+            User user = authenticationService.loadByEmail(email);
+            List<FavoriteDTO> list = favoriteService.getFavoritesByUser(user.getId());
             if (list == null) {
                 return ResponseEntity.notFound().build();
             }
