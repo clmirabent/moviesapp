@@ -17,7 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/favorites")
+ @RequestMapping("/api/favorites")
 public class FavoriteController {
 
     private static final Logger logger = LoggerFactory.getLogger(FavoriteController.class);

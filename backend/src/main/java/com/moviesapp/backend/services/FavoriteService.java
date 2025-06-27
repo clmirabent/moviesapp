@@ -19,12 +19,14 @@ public class FavoriteService {
 
     private final FavoriteRepository favoriteRepo;
     private final UserRepository userRepo;
+    private final OmdbMovieService omdbMovieService;
 
     @Autowired
-    public FavoriteService(FavoriteRepository favoriteRepo, UserRepository userRepo)
+    public FavoriteService(FavoriteRepository favoriteRepo, UserRepository userRepo, OmdbMovieService omdbMovieService)
     {
         this.favoriteRepo= favoriteRepo;
         this.userRepo= userRepo;
+        this.omdbMovieService = omdbMovieService;
     }
 
     //Method to add a favorite to the list
@@ -64,6 +66,7 @@ public class FavoriteService {
         }
         return favoriteRepo.findByUserId(userId).stream()
                 .map(this::toDto)
+                .map(this::addOmdbFavorite)
                 .collect(Collectors.toList());
     }
 
@@ -71,10 +74,13 @@ public class FavoriteService {
         return favoriteRepo.findByUserIdAndMovieId(userId, movieId).isPresent();
     }
 
+    private FavoriteDTO addOmdbFavorite(FavoriteDTO favorite) {
+        var omdbMovie = omdbMovieService.getOmdbMovie(null, favorite.getMovieId());
+        return new FavoriteDTO(favorite.getMovieId(), omdbMovie);
+    }
     private FavoriteDTO toDto(Favorite fav) {
         return new FavoriteDTO(
-                fav.getMovieId(),
-                fav.getUser().getUserName()
+                fav.getMovieId()
         );
     }
 }
