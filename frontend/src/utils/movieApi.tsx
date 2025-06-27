@@ -1,10 +1,11 @@
 import api from "./api"
 
 export interface Movie {
-  imdbID: number
+  imdbID: string
   title: string
   year: string
   poster: string
+  isFavorite: boolean
 }
 
 export interface SearchParams {

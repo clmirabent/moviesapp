@@ -1,107 +1,119 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap");
-
-.body{
-    background-color: #000346;
-    font-family: "Poppins", sans-serif;
-}
-.input {
-  height: 78px;
-  margin-bottom: 4px;
-}
-
-.form_button {
-  border-radius: 16px;
-  background: #eeefa7;
-  transition: ease 0.3s all;
-  align-items: center;
-  width: 200px;
-  height: 47px;
-  border: thin;
-  margin-left: 50px;
-  font-family: "Poppins", sans-serif;
-  margin-top: 12px;
-}
-
-.form_button:hover {
-  transform: scale(1.1);
-}
-
 .root {
-    width: 100%;
-    font-family: Poppins;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  position: relative;            
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
 .container {
-    display: flex;
-    position: relative;
-    width: 1140px;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
+  position: relative;
+  width: 100%;
+  height: 100vh;                  
+  margin: 0 auto;
+  overflow: hidden;               
+}
+
+.container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;             
 }
 
 .searchcontainer {
-    top: 420px;
-    left: 75px;
-    position: absolute;
-    border-radius: 15px;
-    padding: 20px;
-    height: 268px;
-    width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 80%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: #fff;
+}
+
+.searchRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .searchheader {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input input {
+
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.form_button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 16px;
+  background: #A7C7E7;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+}
+
+.form_button:hover {
+  transform: scale(1.05);
 }
 
 .movieList {
-  padding: 2rem;
-  background-color: #f7f9fc;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: transparent !important;
+  padding: 2rem 1rem;
 }
-
-.movieList h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 2rem;
-}
-
 .movieList ul {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin: 0;
   padding: 0;
 }
 
-.movieList li {
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #A7C7E7;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.backButton:hover {
+  background-color: #8ab4d9;
 }
 
-.movieList li:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.movieList h3 {
-  font-size: 1rem;
-  margin: 1rem;
-  color: #34495e;
-  text-align: center;
-}
-
-.movieList img {
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
-  display: block;
-}
 

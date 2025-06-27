@@ -1,35 +1,28 @@
 import api from "./api"
+import type { Movie } from "./movieApi"
 
 export interface Favorite {
   id: number
-  userId: number
   movieId: string
- 
+  movieDTO: Movie
 }
 
 interface AddFavoriteParams {
-  userId: number
   movieId: string
 }
 
-interface GetFavoritesParams {
-  userId: number
-}
-
 interface RemoveFavoriteParams {
-  userId: number
   movieId: string
 }
 
 export async function addFavorite(
-  { userId, movieId }: AddFavoriteParams
+  { movieId }: AddFavoriteParams
 ): Promise<Favorite | any> {
   try {
-    const response = await api.post<Favorite>(`/favorite`, {
-      userId,
+    const response = await api.post<Favorite>(`/favorites`, {
       movieId,
     })
-    return response.data
+    return response
   } catch (error: any) {
     console.error("Favorite error", error.message)
     return error.response
@@ -37,25 +30,22 @@ export async function addFavorite(
 }
 
 
-export async function getFavorites(
-  { userId }: GetFavoritesParams
-): Promise<Favorite[] | any> {
+export async function getFavorites(): Promise<Favorite[] | any> {
   try {
-    const response = await api.get<Favorite[]>(`/users/${userId}/favorite`)
-    return response.data
+    const response = await api.get<Favorite[]>(`/favorites`)
+    return response
   } catch (error: any) {
     console.error("Error fetching favorites", error.message)
     return error.response
   }
 }
 
-
-export async function removeById({ userId, movieId }: RemoveFavoriteParams): Promise<Favorite | any> {
+export async function removeById({ movieId }: RemoveFavoriteParams): Promise<Favorite | any> {
   try {
     const response = await api.delete<Favorite>(
-      `/users/${userId}/favorite/${movieId}`
+      `/favorites/${movieId}`
     )
-    return response.data
+    return response
   } catch (error: any) {
     console.error("Error removing favorites", error.message)
     return error.response

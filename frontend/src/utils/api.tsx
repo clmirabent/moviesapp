@@ -9,7 +9,6 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    // You can add any request interceptors here if needed
     if (!config.headers) {
       return config;
     }
@@ -18,7 +17,6 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
-    // Handle request errors
     return Promise.reject(error);
   }
 );

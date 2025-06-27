@@ -30,35 +30,30 @@ const Register: FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.image_container}>
-        <div className={styles.text_register}>
-        </div>
-        <img style={{ overflow: "auto" }} src={registerImage} alt="register" />
-      </div>
+    <div className={styles.root}>
+      <div
+        className={styles.background}
+        style={{ backgroundImage: `url(${registerImage})` }}
+      />
 
-      <div className={styles.form_container}>
-        <form style={{ width: "300px" }} onSubmit={handleSubmit(onSubmit)}>
-          <div className={styles.input}>
-            <label htmlFor="name" style={{ color: "white" }}>User Name</label>
-            <br />
+      <div className={styles.overlay}>
+        <h1 className={styles.heading}>Sign Up</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+          <div className={styles.inputGroup}>
             <input
-              id="name"
               type="text"
-              className={styles.input_text}
+              placeholder="User Name"
               {...register("name", { required: "A user name is required" })}
+              className={styles.input}
             />
             {errors.name && (
-              <div className={styles.error_message}>{errors.name.message}</div>
+              <span className={styles.error}>{errors.name.message}</span>
             )}
           </div>
-
-          <div className={styles.input}>
-            <label htmlFor="email" style={{ color: "white" }}>Email</label>
-            <br />
+          <div className={styles.inputGroup}>
             <input
-              id="email"
-              className={styles.input_text}
+              type="email"
+              placeholder="Email"
               {...register("email", {
                 required: "An email is required",
                 pattern: {
@@ -66,38 +61,34 @@ const Register: FC = () => {
                   message: "This email is invalid",
                 },
               })}
+              className={styles.input}
             />
             {errors.email && (
-              <div className={styles.error_message}>{errors.email.message}</div>
+              <span className={styles.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className={styles.input}>
-            <label htmlFor="password" style={{ color: "white" }}>Password</label>
-            <br />
+          <div className={styles.inputGroup}>
             <input
-              id="password"
               type="password"
-              className={styles.input_text}
+              placeholder="Password"
               {...register("password", {
                 required: "Password is required",
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                   message:
-                    "Password must have at least 8 characters, one upper case, one lower case and a number",
+                    "Min 8 chars, 1 uppercase, 1 lowercase & 1 number",
                 },
               })}
+              className={styles.input}
             />
             {errors.password && (
-              <div className={styles.error_message}>
-                {errors.password.message}
-              </div>
+              <span className={styles.error}>{errors.password.message}</span>
             )}
           </div>
-          <div>
-            <button className={styles.form_button} type="submit">
-              Sign Up
-            </button>
-          </div>
+
+          <button type="submit" className={styles.submitButton}>
+            Sign Up
+          </button>
         </form>
       </div>
     </div>
