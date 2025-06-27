@@ -1,6 +1,7 @@
 package com.moviesapp.backend.services;
 
 import com.moviesapp.backend.dtos.MovieDTO;
+import com.moviesapp.backend.dtos.OmdbMovieDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,8 @@ public class MovieService {
                 baseUrl = baseUrl + "&t=" + URLEncoder.encode(title, StandardCharsets.UTF_8);
             if(movieId != null && !movieId.isEmpty())
                 baseUrl = baseUrl + "&i=" + URLEncoder.encode(movieId, StandardCharsets.UTF_8);
-            return restTemplate.getForObject(baseUrl, MovieDTO.class);
+            OmdbMovieDTO movie =  restTemplate.getForObject(baseUrl, OmdbMovieDTO.class);
+            return new MovieDTO(movie.getImdbId(), movie.getTitle(), movie.getYear(), movie.getPosterUrl());
 
         } catch (Exception e) {
             throw new RuntimeException("Ha habido un error al obtener la película: " + e.getMessage());

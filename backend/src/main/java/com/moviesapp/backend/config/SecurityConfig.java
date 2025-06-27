@@ -3,6 +3,7 @@ package com.moviesapp.backend.config;
 import com.moviesapp.backend.filter.JwtAuthFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -47,7 +48,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
                         .requestMatchers("api/auth/**").permitAll()
-
+                        // Allow CORS Option calls
+                        .requestMatchers(HttpMethod.OPTIONS, "/api/**").permitAll()
                         // All other endpoints require authentication
                         .anyRequest().authenticated()
                 )

@@ -39,7 +39,7 @@ public class MovieController {
             return ResponseEntity.ok(dto);
 
         } catch (IllegalArgumentException ex) {
-            logger.warn("Bad request en getMovies: {}", ex.getMessage());
+            logger.warn("Bad request en getMovies: {}t", ex.getMessage());
             return ResponseEntity.badRequest().build();
 
         } catch (Exception ex) {

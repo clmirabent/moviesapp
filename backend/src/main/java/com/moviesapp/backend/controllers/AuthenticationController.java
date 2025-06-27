@@ -21,15 +21,13 @@ import org.springframework.web.server.ResponseStatusException;
 public class AuthenticationController {
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
     private final AuthenticationService authenticationService;
-    private final UserInfoService userInfoService;
 
     @Autowired
     JwtService jwtService;
 
     @Autowired
-    public AuthenticationController(AuthenticationService authenticationService, UserInfoService userInfoService, JwtService jwtService) {
+    public AuthenticationController(AuthenticationService authenticationService, JwtService jwtService) {
         this.authenticationService = authenticationService;
-        this.userInfoService = userInfoService;
         this.jwtService = jwtService;
 
     }

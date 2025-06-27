@@ -4,18 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieDTO {
+public class OmdbMovieDTO {
     @JsonProperty("imdbID")
     private String imdbId;
-    @JsonProperty("title")
+    @JsonProperty("Title")
     private String title;
-    @JsonProperty("year")
+    @JsonProperty("Year")
     private String year;
-    @JsonProperty("poster")
+    @JsonProperty("Poster")
     private String posterUrl;
-    public MovieDTO() {
+    public OmdbMovieDTO() {
     }
-    public MovieDTO(String imdbId, String title, String year, String posterUrl) {
+    public OmdbMovieDTO(String imdbId, String title, String year, String posterUrl) {
         this.imdbId = imdbId;
         this.title = title;
         this.year = year;
