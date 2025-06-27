@@ -32,7 +32,7 @@ This project consists in a small full-stack web application to search for movies
 
 ### Prerequisites
 - Java 24
-- npm or yarn
+- React + Vite
 - Backend API running (see backend instructions)
 
 ### Frontend
