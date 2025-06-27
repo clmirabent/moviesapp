@@ -1,11 +1,11 @@
 # 🎥 MovieApp  
 
-A small full-stack web application to search for movies, manage favorites, and handle user authentication for a tehcnical assigment.
+This project consists in a small full-stack web application to search for movies, manage favorites, and handle user authentication for a technical assigment.The user can search a movie online if is logged in, can add favorite´s movies and delete them from the list.
 <img width="1276" alt="Screenshot 2025-06-27 at 17 16 47" src="https://github.com/user-attachments/assets/44b14087-4cac-4f42-b9be-3f0089ab2ad7" />
 
 ---
 ## Demo 
-[![Mira el video](<img width="1276" alt="Screenshot 2025-06-27 at 17 16 47" src="https://github.com/user-attachments/assets/6ab2f293-a97f-49f5-9dc7-0cb3285be966" />
+[![Take a look to the video](<img width="1276" alt="Screenshot 2025-06-27 at 17 16 47" src="https://github.com/user-attachments/assets/6ab2f293-a97f-49f5-9dc7-0cb3285be966" />
 )](https://youtu.be/nMalsbzAsnA)
 
 ---
@@ -28,7 +28,7 @@ A small full-stack web application to search for movies, manage favorites, and h
 
 ---
 
-## Setup Instructions
+## 🖥️ Setup Instructions
 
 ### Prerequisites
 - Java 24
@@ -37,9 +37,9 @@ A small full-stack web application to search for movies, manage favorites, and h
 
 ### Frontend
 
-1. **Clone the repository:**
+1. **Clone the repository on your computer:**
    ```sh
-   git clone <your-repo-url>
+   git clone https://github.com/<USERNAME>/moviesapp.git
    cd frontend
    ```
 
@@ -66,34 +66,38 @@ A small full-stack web application to search for movies, manage favorites, and h
 ### Backend
 **Note: Backend lives in a separate repo — make sure it's running at VITE_API_URL.
 > Please ensure you have a compatible backend running that exposes the following endpoints:
-> - `POST /auth/login`
-> - `POST /auth/register`
-> - `GET /movies?title=...`
-> - `GET /favorites`
-> - `POST /favorites`
-> - `DELETE /favorites`
+> - `POST /api/auth/login`
+> - `POST /api/auth/register`
+> - `GET /api/movies?title=...`
+> - `GET /api/favorites`
+> - `POST /api/favorites`
+> - `DELETE /api/favorites`
 
-1. Clone or create your backend repository.
-2. Install dependencies:
+1. Ensure  you have the repository locally .
+2. Change current directory to `backend` directory
    ```sh
-   npm install
+   cd backend
    ```
-3. Configure environment variables (e.g., database URL, JWT secret).
-4. Start the backend server:
+4. Install dependencies:
    ```sh
-   npm run dev
+   ./gradlew build
    ```
-5. Ensure it runs on the same URL as set in `VITE_API_URL`.
+5. Configure environment in `backend/src/main/resources/application.properties` (e.g., database URL, JWT secret).
+6. Start the backend server:
+   ```sh
+   ./gradlew bootRun
+   ```
+7. Ensure it runs on the same URL as set in `VITE_API_URL`.
 
 ---
 
-## Limitations
+## 📝 Limitations
 - **Rapid Turnaround:** Delivered the complete project in an intensive 24–48 hour sprint.  
 - **Self-Taught Java:** Embraced Java for the first time and built the backend from scratch.
 
 ---
 
-## Improvements with More Time
+## 💡Improvements with More Time
 
 - Implement a robust search (multi-result, pagination, filters).
 - Add user profile management
