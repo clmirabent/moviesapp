@@ -69,13 +69,13 @@
   width: 100%;
   padding: 0.75rem;
   background: #A7C7E7;
-  color: #000;
-  font-weight: bold;
   font-size: 1rem;
+  font-weight: bold;
   border: none;
   border-radius: 16px;
   cursor: pointer;
   transition: transform 0.3s ease;
+     font-family: "Poppins", sans-serif;
 }
 
 .submitButton:hover {

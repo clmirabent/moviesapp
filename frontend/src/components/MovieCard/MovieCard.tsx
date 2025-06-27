@@ -49,11 +49,12 @@ const MovieCard: React.FC<Props> = ({ movie, onChageStatus }) => {
     return (
         <li className={styles.movieCard}>
             <div
-                className={styles.posterContainer}>
-                <img
+                className={styles.posterContainer}
+                >
+                <div
                     className={styles.poster}
-                    src={movie.poster !== "N/A" ? movie.poster : defaultPoster}
-                    alt={movie.title}
+                    style={{ backgroundImage: `url(${movie.poster !== "N/A" ? movie.poster : defaultPoster})` }}
+
                 />
             </div>
             <div className={styles.info}>

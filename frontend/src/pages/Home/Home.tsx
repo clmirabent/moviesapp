@@ -6,6 +6,7 @@ import popcorn from '../../assets/popcorn.jpg';
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
+import { clearToken, isAuthenticated } from '../../utils/api';
 
 
 type SearchInput = {
@@ -17,14 +18,14 @@ const Home: FC = () => {
     const [movie, setMovie] = React.useState<Movie | null>(null);
 
     const navigate = useNavigate();
-    
+
     // Function to handle the search submission
     const onSubmit: SubmitHandler<SearchInput> = async (data) => {
         if (!sessionStorage.getItem("token")) {
-      toast.warning("Please, sign in to search a movie");
-      setTimeout(() => navigate("/login"), 200);
-      return;
-    }
+            toast.warning("Please, sign in to search a movie");
+            setTimeout(() => navigate("/login"), 200);
+            return;
+        }
         try {
             var response = await searchMovies({ search: data.search });
             if (response?.status == 404) {
@@ -41,9 +42,20 @@ const Home: FC = () => {
     };
 
     return (
-        <div className={styles.root}>
-            <div className={styles.container}>
-                <img src={popcorn} alt="popcorn" />
+        <div className={styles.root} style={{ backgroundImage: `url(${popcorn})` }}>
+            {isAuthenticated() && <button className={styles.signOut} onClick={() => {clearToken(); navigate("/login");}} aria-label="Sign out"> Sign out</button>}
+            {!isAuthenticated() &&
+                <div className={styles.searchcontainer}>
+                    <div className={styles.navButtons}>
+                        <Link to="/login" className={styles.navLink}>
+                            <button className={styles.form_button}>Sign In</button>
+                        </Link>
+                        <Link to="/register" className={styles.navLink}>
+                            <button className={`${styles.form_button} ${styles.register_button}`}>Sign Up</button>
+                        </Link>
+                    </div>
+                </div>}
+            {isAuthenticated() &&
                 <div className={styles.searchcontainer}>
                     <div className={styles.searchheader}>
                         <div>
@@ -60,23 +72,20 @@ const Home: FC = () => {
                                 </div>
                                 <button className={styles.form_button} type="submit">Search</button>
                             </form>
-                            <button className={styles.form_button}  > 
-                                <Link style={{ textDecoration: "none"}} to="/favorites">My Favorites</Link>
+                            <button className={styles.form_button}  >
+                                <Link style={{ textDecoration: "none" }} to="/favorites">My Favorites</Link>
                             </button>
                             <section className={styles.movieList}>
                                 <ul>
                                     {movie && (
-                                        <ul className={styles.movieList}>
-                                            <MovieCard movie={movie}/>
-                                        </ul>
+                                        <MovieCard movie={movie} />
                                     )}
 
                                 </ul>
                             </section>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div>}
         </div>
     );
 }

@@ -4,6 +4,7 @@ import popcorn from '../../assets/popcorn.jpg';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import favoriteApi, { type Favorite } from '../../utils/favoriteApi';
 import { useNavigate } from 'react-router-dom';
+import { isAuthenticated } from '../../utils/api';
 
 const Favorites: React.FC = () => {
 
@@ -27,38 +28,31 @@ const Favorites: React.FC = () => {
     };
 
     useEffect(() => {
-        onGetFavorites();
+        if (!isAuthenticated())
+            navigate("/login");
+        else 
+            onGetFavorites();
     }, []);
 
     return (
-   <div className={styles.root}>
-            <div className={styles.container}>
-                <img src={popcorn} alt="popcorn" />
-                <div className={styles.searchcontainer}>
-                    <div className={styles.searchheader}>
-                        <div>
-                             <button
-        className={styles.backButton}
-        onClick={() => navigate("/")}
-        aria-label="Home"
-      >
-        ←
-      </button>
-                            <h1>My Favorites</h1>
-                             <ul className={styles.movieList}>
-                                {favorites.map((movie) => (
-                                    <MovieCard key={movie.movieId} movie={movie.movieDTO} onChageStatus={onGetFavorites}/>
-                                ))}                            
-                                </ul>
-                            </div>
+        <div className={styles.root} style={{ backgroundImage: `url(${popcorn})` }}>
+            <button className={styles.backButton} onClick={() => navigate("/")} aria-label="Home"> ←</button>
+            <div className={styles.searchcontainer}>
+                <div className={styles.searchheader}>
+                    <h1 style={{ alignContent: 'center' }}>My Favorites</h1>
+                    <div className={styles.movieList}>
+                        <ul>
+                            {favorites.map((movie) => (
+                                <MovieCard key={movie.movieId} movie={movie.movieDTO} onChageStatus={onGetFavorites} />
+                            ))}
+                        </ul>
                     </div>
                 </div>
             </div>
-         </div>
+        </div>
     );
 }
 
 export default Favorites;
 
 
- 

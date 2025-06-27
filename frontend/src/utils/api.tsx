@@ -21,6 +21,15 @@ api.interceptors.request.use(
   }
 );
 
+export const isAuthenticated = (): boolean => {
+  const token = sessionStorage.getItem("token");
+  return !!token;
+}
+
+export const clearToken = () => {
+  sessionStorage.removeItem("token");
+}
+
 export const setAuthToken = (token: string | null) => {
   if (token) {
     api.defaults.headers.common["Authorization"] = `Bearer ${token}`;

@@ -84,25 +84,6 @@
   transform: scale(1.05);
 }
 
-.register{
-    padding-top: 40px;
-}
-
-.register_button{
-    border-radius: 16px;
-    background: #accaf1;
-    transition: ease 0.3s all;
-    align-items: center;
-    width: 200px;
-    height: 59px;
-    border-style: none;
-    font-family: "Poppins", sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 0;
-    cursor: pointer;
-}
-
 .registerPrompt {
   color: #fff;
   text-align: center;
