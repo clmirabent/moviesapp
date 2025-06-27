@@ -56,7 +56,7 @@ const Home: FC = () => {
         <div className={styles.movieList}>
             <ul>
                 {movie &&
-                    <li key={movie.id}>
+                    <li key={movie.imdbID}>
                         <h3>{movie.title} ({movie.year})</h3>
                         <img src={movie.poster} alt={movie.title} />   
                     </li>
