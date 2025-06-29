@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styles from '../Home/Home.module.css';
-import popcorn from '../../assets/popcorn.jpg';
+import filmHomeSide from '../../assets/filmHomeSide.png';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import favoriteApi, { type Favorite } from '../../utils/favoriteApi';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +35,11 @@ const Favorites: React.FC = () => {
     }, []);
 
     return (
-        <div className={styles.root} style={{ backgroundImage: `url(${popcorn})` }}>
+        <div className={styles.root} style={{ backgroundImage: `url(${filmHomeSide})` }}>
             <button className={styles.backButton} onClick={() => navigate("/")} aria-label="Home"> ←</button>
             <div className={styles.searchcontainer}>
                 <div className={styles.searchheader}>
-                    <h1 style={{ alignContent: 'center' }}>My Favorites</h1>
+                    <h1 style={{ alignContent: 'center', color: '#011F2B'}}>my favorites.</h1>
                     <div className={styles.movieList}>
                         <ul>
                             {favorites.map((movie) => (

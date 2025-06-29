@@ -65,4 +65,8 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+
+  .Toastify__toast--success .Toastify__toast-icon {
+  color: #88C7B4;
+}
 }

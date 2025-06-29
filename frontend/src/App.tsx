@@ -4,7 +4,13 @@ import LoginForm from "./pages/Login/Login";
 import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Favorites from "./pages/Favorites/Favorites";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.success('Success!', {
+  icon: <span style={{ color: '#88C7B4' }}>✔</span>,
+});
+
 
 const App = () => (
   <div>

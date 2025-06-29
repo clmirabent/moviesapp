@@ -62,18 +62,18 @@ const MovieCard: React.FC<Props> = ({ movie, onChageStatus }) => {
                     <h3 className={styles.title}>{movie.title}</h3>
                     <p className={styles.year}>{movie.year}</p>
                 </div>
-            </div>
             <div className={styles.heartButton}>
                 <UseAnimations
                     animation={heart}
-                    strokeColor={isFavorite ? "#ff6b6b" : "#fff"}
-                    fillColor={isFavorite ? "#ff6b6b" : "transparent"}
+                    strokeColor={isFavorite ? "#77919B" : "#fff"}
+                    fillColor={isFavorite ? "#77919B" : "transparent"}
                     reverse={!isFavorite}
                     onClick={() => onChangeFavorite(!isFavorite)}
                     size={32}
                     style={{ cursor: "pointer" }}
                     />
 
+            </div>
             </div>
         </li>
     );

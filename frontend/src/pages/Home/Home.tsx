@@ -43,49 +43,48 @@ const Home: FC = () => {
 
     return (
         <div className={styles.root} style={{ backgroundImage: `url(${filmHomeSide})` }}>
-            {isAuthenticated() && <button className={styles.signOut} onClick={() => {clearToken(); navigate("/login");}} aria-label="Sign out"> Sign out</button>}
+            {isAuthenticated() && <button className={styles.signOut} onClick={() => { clearToken(); navigate("/login"); }} aria-label="Sign out"> sign out</button>}
             {!isAuthenticated() &&
                 <div className={styles.searchcontainer}>
-                    <h1 style={{display: 'flex', justifyContent: 'center'}}>your favorites live here.</h1>
+                    <h1 style={{ display: 'flex', justifyContent: 'center' }}>your favorites live here.</h1>
                     <div className={styles.navButtons}>
                         <Link to="/login" className={styles.navLink}>
-                            <button className={`${styles.form_button} ${styles.login_button}`}>Log In</button>
+                            <button className={`${styles.form_button} ${styles.login_button}`}>log In</button>
                         </Link>
                         <Link to="/register" className={styles.navLink}>
-                            <button className={`${styles.form_button} ${styles.register_button}`}>Register</button>
+                            <button className={`${styles.form_button} ${styles.register_button}`}>register</button>
                         </Link>
                     </div>
                 </div>}
             {isAuthenticated() &&
                 <div className={styles.searchcontainer}>
                     <div className={styles.searchheader}>
-                        <div>
-                            <h1>Welcome to the Movie App</h1>
 
-                            <form onSubmit={handleSubmit(onSubmit)}>
-                                <div className={styles.input}>
-                                    <input
-                                        type="text"
-                                        placeholder="Search for a movie..."
-                                        {...register("search", { required: true })}
-                                    />
-                                    {errors.search && <span className={styles.error}>This field is required</span>}
-                                </div>
-                                <button className={styles.form_button} type="submit">Search</button>
-                            </form>
-                            <button className={styles.form_button}  >
-                                <Link style={{ textDecoration: "none" }} to="/favorites">My Favorites</Link>
-                            </button>
-                            <section className={styles.movieList}>
-                                <ul>
-                                    {movie && (
-                                        <MovieCard movie={movie} />
-                                    )}
+                        <h1 style={{ color: '#011F2B' }}>welcome to the movie app.</h1>
 
-                                </ul>
-                            </section>
-                        </div>
+                        <form className={styles.searchBar} onSubmit={handleSubmit(onSubmit)}>
+                            <input
+                                type="text"
+                                placeholder="search for a movie."
+                                {...register("search", { required: true })}
+                            />
+                            <button className={`${styles.form_button} ${styles.register_button}`} type="submit">search</button>
+                        </form>
+
+                        <span className={styles.error} style={{"visibility": errors.search ? "unset": "hidden"}}>This field is required</span>
+
+                        <button className={`${styles.form_button} ${styles.login_button}`}  >
+                            <Link style={{ textDecoration: "none" }} to="/favorites">my favorites</Link>
+                        </button>
                     </div>
+                    <section className={styles.movieList}>
+                        <ul>
+                            {movie && (
+                                <MovieCard movie={movie} />
+                            )}
+
+                        </ul>
+                    </section>
                 </div>}
         </div>
     );

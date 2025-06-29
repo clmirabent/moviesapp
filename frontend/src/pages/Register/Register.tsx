@@ -3,6 +3,9 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
 import styles from "./Register.module.css";
+import loginStyle from "../Login/Login.module.css";
+import homeStyles from "../Home/Home.module.css";
+
 import registerImage from "../../assets/registerImage.jpg";
 import { registerUser } from "../../utils/userApi";
 
@@ -30,64 +33,59 @@ const Register: FC = () => {
   };
 
   return (
-    <div className={styles.root}>
-      <div
-        className={styles.background}
-        style={{ backgroundImage: `url(${registerImage})` }}
-      />
-
-      <div className={styles.overlay}>
-        <h1 className={styles.heading}>Sign Up</h1>
+   <div className={homeStyles.root}>
+      <div className={loginStyle.overlay}>
+        <h1 className={loginStyle.heading} style={{ color: '#011F2B' }}>register.</h1>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-          <div className={styles.inputGroup}>
+          <div className={loginStyle.inputGroup}>
             <input
               type="text"
-              placeholder="User Name"
-              {...register("name", { required: "A user name is required" })}
-              className={styles.input}
+              placeholder="type your username here."
+              {...register("name", { required: "a user name is required." })}
+              className={loginStyle.input}
             />
             {errors.name && (
               <span className={styles.error}>{errors.name.message}</span>
             )}
           </div>
-          <div className={styles.inputGroup}>
+          <div className={loginStyle.inputGroup}>
             <input
               type="email"
-              placeholder="Email"
+              placeholder="type your email here."
               {...register("email", {
-                required: "An email is required",
+                required: "an email is required.",
                 pattern: {
                   value: /^\S+@\S+$/i,
-                  message: "This email is invalid",
+                  message: "this email is invalid",
                 },
               })}
-              className={styles.input}
+              className={loginStyle.input}
             />
             {errors.email && (
               <span className={styles.error}>{errors.email.message}</span>
             )}
           </div>
-          <div className={styles.inputGroup}>
+          <div className={loginStyle.inputGroup}>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="password."
               {...register("password", {
-                required: "Password is required",
+                required: "password is required.",
                 pattern: {
                   value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/,
                   message:
-                    "Min 8 chars, 1 uppercase, 1 lowercase & 1 number",
+                    "min 8 chars, 1 uppercase, 1 lowercase & 1 number",
                 },
               })}
-              className={styles.input}
+              className={loginStyle.input}
             />
             {errors.password && (
               <span className={styles.error}>{errors.password.message}</span>
             )}
           </div>
 
-          <button type="submit" className={styles.submitButton}>
-            Sign Up
+          <button type="submit" className={`${loginStyle.form_button} ${homeStyles.register_button}`}>
+            register
           </button>
         </form>
       </div>
