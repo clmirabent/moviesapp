@@ -2,7 +2,7 @@ import React, { type FC } from 'react';
 import styles from './Home.module.css';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { searchMovies, type Movie } from '../../utils/movieApi';
-import popcorn from '../../assets/popcorn.jpg';
+import filmHomeSide from '../../assets/filmHomeSide.png';
 import MovieCard from "../../components/MovieCard/MovieCard";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
@@ -42,16 +42,17 @@ const Home: FC = () => {
     };
 
     return (
-        <div className={styles.root} style={{ backgroundImage: `url(${popcorn})` }}>
+        <div className={styles.root} style={{ backgroundImage: `url(${filmHomeSide})` }}>
             {isAuthenticated() && <button className={styles.signOut} onClick={() => {clearToken(); navigate("/login");}} aria-label="Sign out"> Sign out</button>}
             {!isAuthenticated() &&
                 <div className={styles.searchcontainer}>
+                    <h1 style={{display: 'flex', justifyContent: 'center'}}>your favorites live here.</h1>
                     <div className={styles.navButtons}>
                         <Link to="/login" className={styles.navLink}>
-                            <button className={styles.form_button}>Sign In</button>
+                            <button className={`${styles.form_button} ${styles.login_button}`}>Log In</button>
                         </Link>
                         <Link to="/register" className={styles.navLink}>
-                            <button className={`${styles.form_button} ${styles.register_button}`}>Sign Up</button>
+                            <button className={`${styles.form_button} ${styles.register_button}`}>Register</button>
                         </Link>
                     </div>
                 </div>}

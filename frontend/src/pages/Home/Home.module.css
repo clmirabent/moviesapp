@@ -1,11 +1,20 @@
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../../assets/sf-pro-display/SFPRODISPLAYREGULAR.OTF') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
 .root {
   width: 100vw;
   height: 100vh;
-  font-family: "Poppins", sans-serif;
+  font-family: "SF Pro Display";
   display: grid;
   align-content: center;
   justify-content: center;
-  background-size: cover;        
+  background-size: cover;   
+       
 }
 
 html, body {
@@ -26,8 +35,8 @@ html, body {
   max-width: 600px;
   padding: 20px;
   border-radius: 15px;
-  background-color: rgba(0, 0, 0, 0.5); 
-  color: #fff;
+  display: grid;
+   justify-content: space-evenly;
 }
 
 .searchRow {
@@ -51,7 +60,6 @@ html, body {
 }
 
 .input input {
-
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: none;
@@ -59,7 +67,7 @@ html, body {
 }
 
 .error {
-  color: #ff6b6b;
+  color: #FA9E7E;
   margin-top: 0.25rem;
   font-size: 0.875rem;
 }
@@ -68,10 +76,9 @@ html, body {
   width: 100%;
   padding: 0.75rem;
   margin-top: 1rem;
-  border-radius: 16px;
-  background: #A7C7E7;
+  border-radius: 8px;
+  background: #F7F8F9;
   border: none;
-  font-size: 1rem;
   cursor: pointer;
   transition: transform 0.3s ease;
   text-decoration: none;
@@ -137,7 +144,11 @@ html, body {
 }
 
 .register_button {
-background-color: #c8b6ff;
+background-color: #6577E0;
+}
+
+.login_button {
+  border: 2px solid #6577E0;
 }
 
 
