@@ -41,7 +41,7 @@ const LoginForm: React.FC = () => {
           <div className={styles.inputGroup}>
             <input
               type="email"
-              placeholder="type your email here..."
+              placeholder="type your email here."
               {...register("email", { required: true })}
               className={styles.input}
             />
